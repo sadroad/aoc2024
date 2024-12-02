@@ -15,6 +15,7 @@ fn main() {
     let input = fs::read_to_string(format!("input/day{}", args[1])).unwrap();
     let (part1, part2) = match args[1].as_str() {
         "1" => Day1::solution(&input),
+        "2" => Day2::solution(&input),
         _ => {
             eprintln!("Day {} not implemented yet", args[1]);
             return;
