@@ -16,6 +16,7 @@ fn main() {
     let (part1, part2) = match args[1].as_str() {
         "1" => Day1::solution(&input),
         "2" => Day2::solution(&input),
+        "3" => Day3::solution(&input),
         _ => {
             eprintln!("Day {} not implemented yet", args[1]);
             return;
