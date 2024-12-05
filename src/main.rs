@@ -17,6 +17,8 @@ fn main() {
         "1" => Day1::solution(&input),
         "2" => Day2::solution(&input),
         "3" => Day3::solution(&input),
+        "4" => Day4::solution(&input),
+        "5" => Day5::solution(&input),
         _ => {
             eprintln!("Day {} not implemented yet", args[1]);
             return;
