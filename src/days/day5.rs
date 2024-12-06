@@ -17,7 +17,7 @@ impl Solution for Day5 {
         let mut total_middle = 0;
         let mut total_incorrect_middle = 0;
         for update in lines {
-            let mut initally_correct = true;
+            let mut initially_correct = true;
             let mut prior_pages = HashSet::new();
             let mut update_pages = vec![];
             for page in update.split(",") {
@@ -26,20 +26,20 @@ impl Solution for Day5 {
                 update_pages.push(page);
                 if let Some(edge) = rule {
                     for node in edge {
-                        if prior_pages.contains(node) {
-                            update_pages = topological_sort(&update_pages, &rules);
-                            initally_correct = false;
+                        if initially_correct && prior_pages.contains(node) {
+                            initially_correct = false;
                         }
                     }
                 }
             }
-            if initally_correct {
+            if initially_correct {
                 total_middle += update_pages
                     .get(update_pages.len() / 2)
                     .unwrap()
                     .parse::<i32>()
                     .unwrap();
             } else {
+                update_pages = topological_sort(&update_pages, &prior_pages, &rules);
                 total_incorrect_middle += update_pages
                     .get(update_pages.len() / 2)
                     .unwrap()
@@ -52,14 +52,15 @@ impl Solution for Day5 {
 }
 // much bad efficient
 fn topological_sort<'a>(
-    graph: &Vec<&'a str>,
+    graph: &[&'a str],
+    graph_set: &HashSet<&'a str>,
     edges: &HashMap<&'a str, Vec<&'a str>>,
 ) -> Vec<&'a str> {
     let mut sorted = Vec::new();
     let mut visited = HashSet::new();
 
     for node in graph {
-        visit(node, edges, &mut visited, &mut sorted, graph);
+        visit(node, edges, &mut visited, &mut sorted, &graph_set);
     }
 
     sorted.reverse();
@@ -70,7 +71,7 @@ fn visit<'a>(
     rules: &HashMap<&'a str, Vec<&'a str>>,
     visited: &mut HashSet<&'a str>,
     sorted: &mut Vec<&'a str>,
-    graph: &Vec<&'a str>,
+    graph_set: &HashSet<&'a str>,
 ) {
     if visited.contains(node) {
         return;
@@ -78,8 +79,8 @@ fn visit<'a>(
     visited.insert(node);
     if let Some(edges) = rules.get(node) {
         for &edge in edges {
-            if graph.contains(&edge) {
-                visit(edge, &rules, visited, sorted, graph);
+            if graph_set.contains(&edge) {
+                visit(edge, &rules, visited, sorted, graph_set);
             }
         }
     }
