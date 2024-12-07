@@ -3,7 +3,7 @@ mod days;
 use days::*;
 
 pub trait Solution {
-    fn solution(input: &str) -> (Option<i32>, Option<i32>);
+    fn solution(input: &str) -> (Option<i64>, Option<i64>);
 }
 
 fn main() {
@@ -20,6 +20,7 @@ fn main() {
         "4" => Day4::solution(&input),
         "5" => Day5::solution(&input),
         "6" => Day6::solution(&input),
+        "7" => Day7::solution(&input),
         _ => {
             eprintln!("Day {} not implemented yet", args[1]);
             return;

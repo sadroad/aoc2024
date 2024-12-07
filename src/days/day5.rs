@@ -4,7 +4,7 @@ use std::collections::{HashMap, HashSet};
 pub struct Day5 {}
 
 impl Solution for Day5 {
-    fn solution(input: &str) -> (Option<i32>, Option<i32>) {
+    fn solution(input: &str) -> (Option<i64>, Option<i64>) {
         let mut rules = HashMap::new();
         let mut lines = input.lines();
         for order_rule in lines.by_ref() {
@@ -36,14 +36,14 @@ impl Solution for Day5 {
                 total_middle += update_pages
                     .get(update_pages.len() / 2)
                     .unwrap()
-                    .parse::<i32>()
+                    .parse::<i64>()
                     .unwrap();
             } else {
                 update_pages = topological_sort(&update_pages, &prior_pages, &rules);
                 total_incorrect_middle += update_pages
                     .get(update_pages.len() / 2)
                     .unwrap()
-                    .parse::<i32>()
+                    .parse::<i64>()
                     .unwrap();
             }
         }

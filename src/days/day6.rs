@@ -3,7 +3,7 @@ use std::collections::HashSet;
 
 pub struct Day6 {}
 
-fn turn_right(direction: (i32, i32)) -> (i32, i32) {
+fn turn_right(direction: (i64, i64)) -> (i64, i64) {
     match direction {
         (0, -1) => (1, 0),
         (1, 0) => (0, 1),
@@ -14,28 +14,28 @@ fn turn_right(direction: (i32, i32)) -> (i32, i32) {
 }
 
 impl Solution for Day6 {
-    fn solution(input: &str) -> (Option<i32>, Option<i32>) {
+    fn solution(input: &str) -> (Option<i64>, Option<i64>) {
         let part1 = solve_part1(input);
         let part2 = solve_part2(input);
         (Some(part1), Some(part2))
     }
 }
 
-fn solve_part1(input: &str) -> i32 {
+fn solve_part1(input: &str) -> i64 {
     let mut obstacles = HashSet::new();
     let lines: Vec<&str> = input.lines().collect();
     let mut guard_pos = (0, 0);
-    let width = lines[0].len() as i32;
-    let height = lines.len() as i32;
+    let width = lines[0].len() as i64;
+    let height = lines.len() as i64;
 
     for (y, line) in lines.iter().enumerate() {
         for (x, c) in line.chars().enumerate() {
             match c {
                 '#' => {
-                    obstacles.insert((x as i32, y as i32));
+                    obstacles.insert((x as i64, y as i64));
                 }
                 '^' => {
-                    guard_pos = (x as i32, y as i32);
+                    guard_pos = (x as i64, y as i64);
                 }
                 _ => {}
             }
@@ -59,24 +59,24 @@ fn solve_part1(input: &str) -> i32 {
         }
     }
 
-    visited.len() as i32
+    visited.len() as i64
 }
 
-fn solve_part2(input: &str) -> i32 {
+fn solve_part2(input: &str) -> i64 {
     let mut obstacles = HashSet::new();
     let lines: Vec<&str> = input.lines().collect();
     let mut guard_pos = (0, 0);
-    let width = lines[0].len() as i32;
-    let height = lines.len() as i32;
+    let width = lines[0].len() as i64;
+    let height = lines.len() as i64;
 
     for (y, line) in lines.iter().enumerate() {
         for (x, c) in line.chars().enumerate() {
             match c {
                 '#' => {
-                    obstacles.insert((x as i32, y as i32));
+                    obstacles.insert((x as i64, y as i64));
                 }
                 '^' => {
-                    guard_pos = (x as i32, y as i32);
+                    guard_pos = (x as i64, y as i64);
                 }
                 _ => {}
             }
@@ -131,5 +131,5 @@ fn solve_part2(input: &str) -> i32 {
         }
     }
 
-    extra_obstacles.len() as i32
+    extra_obstacles.len() as i64
 }

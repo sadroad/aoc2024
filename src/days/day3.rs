@@ -3,7 +3,7 @@ use crate::Solution;
 pub struct Day3 {}
 
 impl Solution for Day3 {
-    fn solution(input: &str) -> (Option<i32>, Option<i32>) {
+    fn solution(input: &str) -> (Option<i64>, Option<i64>) {
         let mut enabled = true;
         let mut part2 = 0;
         let mut part1 = 0;
@@ -27,7 +27,7 @@ impl Solution for Day3 {
                         if !c.is_ascii_digit() || digit_count >= 3 {
                             break;
                         }
-                        num1 = num1 * 10 + (c as i32 - '0' as i32);
+                        num1 = num1 * 10 + (c as i64 - '0' as i64);
                     }
                     if num1 == 0 {
                         continue;
@@ -47,7 +47,7 @@ impl Solution for Day3 {
                         if !c.is_ascii_digit() || digit_count >= 3 {
                             break;
                         }
-                        num2 = num2 * 10 + (c as i32 - '0' as i32);
+                        num2 = num2 * 10 + (c as i64 - '0' as i64);
                     }
                 }
                 _ => {}

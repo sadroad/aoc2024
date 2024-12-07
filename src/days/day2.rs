@@ -3,9 +3,9 @@ use crate::Solution;
 pub struct Day2 {}
 
 impl Solution for Day2 {
-    fn solution(input: &str) -> (Option<i32>, Option<i32>) {
-        fn is_valid_sequence(nums: &[i32]) -> bool {
-            let mut prior: Option<i32> = None;
+    fn solution(input: &str) -> (Option<i64>, Option<i64>) {
+        fn is_valid_sequence(nums: &[i64]) -> bool {
+            let mut prior: Option<i64> = None;
             let mut diff_direction: Option<bool> = None;
 
             for num in nums {
@@ -34,9 +34,9 @@ impl Solution for Day2 {
         let mut part2 = 0;
 
         for line in input.lines() {
-            let nums: Vec<i32> = line
+            let nums: Vec<i64> = line
                 .split_whitespace()
-                .map(|x| x.parse::<i32>().unwrap())
+                .map(|x| x.parse::<i64>().unwrap())
                 .collect();
 
             if is_valid_sequence(&nums) {

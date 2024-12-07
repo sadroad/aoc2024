@@ -3,7 +3,7 @@ use crate::Solution;
 pub struct Day4 {}
 
 impl Solution for Day4 {
-    fn solution(input: &str) -> (Option<i32>, Option<i32>) {
+    fn solution(input: &str) -> (Option<i64>, Option<i64>) {
         let mut total_xmas = 0;
         total_xmas += find_forward(input);
         total_xmas += find_backward(input);
@@ -25,7 +25,7 @@ enum TopPairs {
     SS,
 }
 
-fn find_x_mas(input: &str) -> i32 {
+fn find_x_mas(input: &str) -> i64 {
     let line_length = input.lines().next().unwrap().len();
     let lines: Vec<_> = input.lines().collect();
     let mut instances = 0;
@@ -87,26 +87,26 @@ fn find_x_mas(input: &str) -> i32 {
                 }
             })
             .collect();
-        instances += bottom.len() as i32;
+        instances += bottom.len() as i64;
     }
     instances
 }
 
-fn find_forward(input: &str) -> i32 {
+fn find_forward(input: &str) -> i64 {
     input
         .lines()
-        .map(|x| x.matches("XMAS").count() as i32)
+        .map(|x| x.matches("XMAS").count() as i64)
         .sum()
 }
 
-fn find_backward(input: &str) -> i32 {
+fn find_backward(input: &str) -> i64 {
     input
         .lines()
-        .map(|x| x.matches("SAMX").count() as i32)
+        .map(|x| x.matches("SAMX").count() as i64)
         .sum()
 }
 
-fn find_vertical(input: &str) -> i32 {
+fn find_vertical(input: &str) -> i64 {
     let lines: Vec<_> = input.lines().collect();
     let mut instances = 0;
     for (i, line) in lines.iter().enumerate() {
@@ -156,12 +156,12 @@ fn find_vertical(input: &str) -> i32 {
                 None
             })
             .collect();
-        instances += s_s.len() as i32;
+        instances += s_s.len() as i64;
     }
     instances
 }
 
-fn find_vertical_backwards(input: &str) -> i32 {
+fn find_vertical_backwards(input: &str) -> i64 {
     let lines: Vec<_> = input.lines().collect();
     let mut instances = 0;
     for (i, line) in lines.iter().enumerate() {
@@ -211,12 +211,12 @@ fn find_vertical_backwards(input: &str) -> i32 {
                 None
             })
             .collect();
-        instances += s_s.len() as i32;
+        instances += s_s.len() as i64;
     }
     instances
 }
 
-fn find_diagonal_right(input: &str) -> i32 {
+fn find_diagonal_right(input: &str) -> i64 {
     let line_length = input.lines().next().unwrap().len();
     let lines: Vec<_> = input.lines().collect();
     let mut instances = 0;
@@ -280,12 +280,12 @@ fn find_diagonal_right(input: &str) -> i32 {
                 None
             })
             .collect();
-        instances += s_s.len() as i32;
+        instances += s_s.len() as i64;
     }
     instances
 }
 
-fn find_diagonal_left(input: &str) -> i32 {
+fn find_diagonal_left(input: &str) -> i64 {
     let lines: Vec<_> = input.lines().collect();
     let mut instances = 0;
     for (i, line) in lines.iter().enumerate() {
@@ -339,12 +339,12 @@ fn find_diagonal_left(input: &str) -> i32 {
                 None
             })
             .collect();
-        instances += s_s.len() as i32;
+        instances += s_s.len() as i64;
     }
     instances
 }
 
-fn find_diagonal_right_backward(input: &str) -> i32 {
+fn find_diagonal_right_backward(input: &str) -> i64 {
     let line_length = input.lines().next().unwrap().len();
     let lines: Vec<_> = input.lines().collect();
     let mut instances = 0;
@@ -408,12 +408,12 @@ fn find_diagonal_right_backward(input: &str) -> i32 {
                 None
             })
             .collect();
-        instances += s_s.len() as i32;
+        instances += s_s.len() as i64;
     }
     instances
 }
 
-fn find_diagonal_left_backward(input: &str) -> i32 {
+fn find_diagonal_left_backward(input: &str) -> i64 {
     let lines: Vec<_> = input.lines().collect();
     let mut instances = 0;
     for (i, line) in lines.iter().enumerate() {
@@ -467,7 +467,7 @@ fn find_diagonal_left_backward(input: &str) -> i32 {
                 None
             })
             .collect();
-        instances += s_s.len() as i32;
+        instances += s_s.len() as i64;
     }
     instances
 }
